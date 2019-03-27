@@ -1,0 +1,308 @@
+package pom.structure;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+
+public class PaymentPageFactory extends PathPages {
+
+	@FindBy(id="txtCardholderName")
+	@CacheLookup
+	WebElement cardholder;
+
+	@FindBy(id = "txtDebit")
+	@CacheLookup
+	WebElement debit;
+
+	@FindBy(id = "txtCvv")
+	@CacheLookup
+	WebElement cvv;
+
+	@FindBy(id = "txtMonth")
+	@CacheLookup
+	WebElement month;
+
+	@FindBy(id = "txtYear")
+	@CacheLookup
+	WebElement year;
+	
+	@FindBy(id="btnPayment")
+	@CacheLookup
+	WebElement button;
+
+	private static String page = "PaymentDetails.html";
+	private static String title = "Payment Details";
+
+	 public PaymentPageFactory(Browser browser) {
+		super(page, title, browser);
+		PageFactory.initElements(super.getBrowser().driver, this);
+	}
+
+	@Override
+	public Browser getBrowser() {
+		return super.getBrowser();
+	}
+	
+	public WebElement getCardholder() {
+		return cardholder;
+	}
+
+	public void setCardholder(String holder) {
+		cardholder.sendKeys(holder);
+	}
+
+	public WebElement getDebit() {
+		return debit;
+	}
+
+	public void setDebit(String deb) {
+		debit.sendKeys(deb);
+	}
+
+	public WebElement getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(String cv) {
+		cvv.sendKeys(cv);
+	}
+
+	public WebElement getMonth() {
+		return month;
+	}
+
+	public void setMonth(String mo) {
+		month.sendKeys(mo);
+	}
+
+	public WebElement getYear() {
+		return year;
+	}
+
+	public void setYear(String y) {
+		year.sendKeys(y);
+	}
+
+	public WebElement getButton() {
+		return button;
+	}
+
+	public void setButton() {
+		button.click();
+	}
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+package pom.structure;
+
+import java.util.List;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+//import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+public class RegistrationPageFactory extends PathPages{
+
+	private static String page = "ConferenceRegistartion.html";
+	private static String title = " Conference Registartion";
+
+	public RegistrationPageFactory(Browser browser) {
+		super(page, title, browser);
+		PageFactory.initElements(super.getBrowser().driver, this);
+	}
+
+	@Override
+	public Browser getBrowser() {
+		return super.getBrowser();
+	}
+	
+		@FindBy(name = "txtFN")
+		@CacheLookup
+		WebElement fname;
+
+		//@FindBy(how = How.ID, using = "btnPayment")
+		@FindBy(xpath = "/html/body/form/table/tbody/tr[14]/td/a")
+		@CacheLookup
+		WebElement nextbutton;
+
+		@FindBy(name = "txtLN")		
+		@CacheLookup
+		WebElement lname;
+
+		@FindBy(name= "Email")
+		@CacheLookup
+		WebElement email;
+
+		@FindBy(name = "Phone")
+		@CacheLookup
+		WebElement mobile;
+
+		@FindBy(name = "size")
+		@CacheLookup
+		WebElement peopleAttending;
+	
+		@FindBy(name = "Address")
+		@CacheLookup
+		WebElement building;
+		
+		@FindBy(name = "Address2")
+		@CacheLookup
+		WebElement area;
+		
+		@FindBy(name="city")
+		@CacheLookup
+		WebElement city;
+
+		@FindBy(name="state")
+		@CacheLookup
+		WebElement state;
+		
+		@FindBy(name="memberStatus")
+		@CacheLookup
+		List<WebElement> radioButton;
+
+		public WebElement getFname() {
+			return fname;
+		}
+
+		public void setFname(String firstname) {
+			fname.sendKeys(firstname);
+		}
+
+		public WebElement getNextbutton() {
+			return nextbutton;
+		}
+
+		public void setNextbutton() {
+			nextbutton.click();
+		}
+
+		public WebElement getLname() {
+			return lname;
+		}
+
+		public void setLname(String lastname) {
+		lname.sendKeys(lastname);
+		}
+
+		public WebElement getEmail() {
+			return email;
+		}
+
+		public void setEmail(String mail) {
+			email.sendKeys(mail);
+		}
+
+		public WebElement getMobile() {
+			return mobile;
+		}
+
+		public void setMobile(String num) {
+			mobile.sendKeys(num);
+		}
+
+		public WebElement getPeopleAttending() {
+			return peopleAttending;
+		}
+
+		public void setPeopleAttending(String no) {
+			
+			Select attending = new Select(peopleAttending);
+			attending.selectByVisibleText(no);
+		
+		}
+
+		public WebElement getBuilding() {
+			return building;
+		}
+
+		public void setBuilding(String build) {
+			building.sendKeys(build);
+		}
+
+		public WebElement getArea() {
+			return area;
+		}
+
+		public void setArea(String ar) {
+			area.sendKeys(ar);
+		}
+
+		public WebElement getCity() {
+			return city;
+		}
+
+		public void setCity(String scity) {
+			
+			Select selCity = new Select(city);
+			selCity.selectByVisibleText(scity);
+		
+		}
+
+		public WebElement getState() {
+			return state;
+		}
+
+		public void setState(String sstate) {
+			Select selState = new Select(state);
+			selState.selectByVisibleText(sstate);
+		}
+
+		public WebElement getRadioButton() {
+			return (WebElement) radioButton;
+		}
+
+		public void setRadioButton(int rs) {
+			if(rs==1000)
+				radioButton.get(0).click();
+			if(rs==1500)
+				radioButton.get(1).click();
+		}
+		
+		
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
